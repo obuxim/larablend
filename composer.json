@@ -16,10 +16,10 @@
         }
     },
     "extra": {
-    "laravel": {
-        "providers": [
-            "Duoneos\\Larablend\\LarablendServiceProvider"
-        ],
+        "laravel": {
+            "providers": [
+                "Duoneos\\Larablend\\LarablendServiceProvider"
+            ]
+        }
     }
-},
 }
