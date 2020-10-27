@@ -14,5 +14,12 @@
         "psr-4": {
             "Duoneos\\Larablend\\": "src/"
         }
+    },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "Duoneos\\Larablend\\LarablendServiceProvider"
+        ],
     }
+},
 }
