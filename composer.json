@@ -1,0 +1,18 @@
+{
+    "name": "duoneos/larablend",
+    "description": "Larablend tries to blend the messy controllers and routes of conventional Laravel App into one single CustomRouter and LaraBlend Class",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zubair Hasan",
+            "email": "z@duoneos.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Duoneos\\Larablend\\": "src/"
+        }
+    }
+}
