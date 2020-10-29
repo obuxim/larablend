@@ -33,10 +33,11 @@ class LarablendRoute
             if(Str::contains($request->path(), 'api')){
                 $api = true;
             }
+            $custom_controller = "\App\\Http\\Controllers\\".$model_name."Controller";
             if($model_name == 'ViewSetting'){
                 $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\ViewSettingController";
             }else{
-                $custom_controller = "\App\\Http\\Controllers\\".$model_name."Controller";
+                $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\LarablendController";
             }
             if(class_exists($custom_controller)){
                 return app()->call($custom_controller."::".$action, [
