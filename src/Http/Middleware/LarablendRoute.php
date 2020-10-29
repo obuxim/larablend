@@ -22,12 +22,13 @@ class LarablendRoute
         $action = $request->route('action') ? $request->route('action') : 'index';
         $id = $request->route('id') ? $request->route('id') : null;
         $model_name = Str::ucfirst(Str::camel($model));
+        $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\LarablendController";
         if($model_name == 'ViewSetting'){
             $model_path = "\Duoneos\\Larablend\\Models\\".$model_name;
+            $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\ViewSettingController";
         }else{
             $model_path = "\App\\Models\\".$model_name;
         }
-        $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\LarablendController";
         if(class_exists($model_path)){
             $api = false;
             if(Str::contains($request->path(), 'api')){
