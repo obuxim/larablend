@@ -25,7 +25,6 @@ class LarablendRoute
         $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\LarablendController";
         if($model_name == 'ViewSetting'){
             $model_path = "\Duoneos\\Larablend\\Models\\".$model_name;
-            $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\ViewSettingController";
         }else{
             $model_path = "\App\\Models\\".$model_name;
         }
@@ -34,7 +33,11 @@ class LarablendRoute
             if(Str::contains($request->path(), 'api')){
                 $api = true;
             }
-            $custom_controller = "\App\\Http\\Controllers\\".$model_name."Controller";
+            if($model_name == 'ViewSetting'){
+                $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\ViewSettingController";
+            }else{
+                $custom_controller = "\App\\Http\\Controllers\\".$model_name."Controller";
+            }
             if(class_exists($custom_controller)){
                 return app()->call($custom_controller."::".$action, [
                     'request' => $request,
