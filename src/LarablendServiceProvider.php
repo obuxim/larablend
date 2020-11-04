@@ -8,17 +8,11 @@ class LarablendServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__."/routes/web.php");
-        $this->loadViewsFrom(__DIR__.'/views', 'larablend');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadRoutesFrom(__DIR__."/routes/routes.php");
+        $this->loadMigrationsFrom(__DIR__."/database/migrations");
+        $this->loadViewsFrom(__DIR__."/views", 'larablend');
         $this->publishes([
-            __DIR__.'/css' => public_path('vendor/larablend/css'),
-        ], 'public');
-        $this->publishes([
-            __DIR__.'/js' => public_path('vendor/larablend/js'),
-        ], 'public');
-        $this->publishes([
-            __DIR__.'/assets' => public_path('vendor/larablend/assets'),
+            __DIR__."/public" => public_path('vendor/larablend')
         ], 'public');
     }
 
