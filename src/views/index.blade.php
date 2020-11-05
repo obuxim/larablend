@@ -1,6 +1,7 @@
 
 @extends('larablend::layouts.app')
 @section('content')
+    @section('title', 'All '.ucwords(str_replace('_', ' ', $data->table)))
     <h2>All {{ ucwords(str_replace('_', ' ', $data->table)) }}</h2>
     @include('larablend::components.flash')
     <div>

@@ -212,6 +212,7 @@ class LarablendCrudController extends Controller {
         $placeholder = "Please enter ".$label." here!";
         $type = $dataType;
         switch($dataType){
+            case "float":
             case "integer":
                 $type = "number";
                 break;

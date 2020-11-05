@@ -61,11 +61,31 @@ $('.modal form').on('submit', function (){
     alert("I am submitted!");
 })
 
-$('.custom-datatable').DataTable({
-    dom: 'Bfrtip',
-    buttons: [
-        'print',
-        'excel',
-        'pdf'
-    ]
-})
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('.datatable thead tr').clone(true).appendTo( '.datatable thead' );
+    $('.datatable thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" class="form-control" placeholder="Search '+title+'" />' );
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
+    var table = $('.datatable').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'print',
+            'excel',
+            'pdf'
+        ]
+    } );
+} );

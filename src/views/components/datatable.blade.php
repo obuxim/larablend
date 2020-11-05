@@ -16,7 +16,9 @@
                 @if(isset($entry->$key->title))
                     {{$entry->$key->title}}
                 @elseif(isset($entry->$key->name))
-                    {{isset($entry->$key->name)}}
+                    {{$entry->$key->name}}
+                @elseif(isset($entry->$key->number))
+                    {{$entry->$key->number}}
                 @elseif(isset($entry->$key->first_name))
                     {{$entry->$key->first_name . ' ' . $entry->$key->last_name}}
                 @else
