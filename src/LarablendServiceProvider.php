@@ -6,9 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 class LarablendServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->loadRoutesFrom(__DIR__."/routes/web.php");
+        $this->loadRoutesFrom(__DIR__."/routes/api.php");
         $this->loadViewsFrom(__DIR__.'/views', 'larablend');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->publishes([
@@ -22,7 +23,7 @@ class LarablendServiceProvider extends ServiceProvider
         ], 'public');
     }
 
-    public function register()
+    public function register(): void
     {
 
     }

@@ -18,9 +18,19 @@ class LarablendRoute
      */
     public function handle(Request $request, Closure $next)
     {
-        $model = $request->route('model');
-        $action = $request->route('action') ? $request->route('action') : 'index';
-        $id = $request->route('id') ? $request->route('id') : null;
+        $path = request()->path();
+        $exploded = explode('/', $path);
+        if($exploded[0] == "api"){
+            $api = true;
+            $model = $exploded[1];
+            $action = array_key_exists(2, $exploded) ? $exploded[2] : 'index';
+            $id = array_key_exists(3, $exploded) ? $exploded[3] : null;
+        }else{
+            $api = false;
+            $model = $exploded[0];
+            $action = array_key_exists(1, $exploded) ? $exploded[1] : 'index';
+            $id = array_key_exists(2, $exploded) ? $exploded[2] : null;
+        }
         $model_name = Str::ucfirst(Str::camel($model));
         if($model_name == 'ViewSetting'){
             $model_path = "\Duoneos\\Larablend\\Models\\".$model_name;
@@ -29,10 +39,6 @@ class LarablendRoute
         }
         $controller_path = "\Duoneos\\Larablend\\Http\\Controllers\\LarablendController";
         if(class_exists($model_path)){
-            $api = false;
-            if(Str::contains($request->path(), 'api')){
-                $api = true;
-            }
             $custom_controller = "\App\\Http\\Controllers\\".$model_name."Controller";
             if(class_exists($custom_controller)){
                 return app()->call($custom_controller."::".$action, [

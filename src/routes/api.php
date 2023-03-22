@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use Duoneos\Larablend\Http\Middlware\LarablendRoute;
+use Duoneos\Larablend\Http\Middleware\LarablendRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,14 @@ use Duoneos\Larablend\Http\Middlware\LarablendRoute;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware(LarablendRoute::class)->any('/{model}/{action?}/{id?}',function(){
-    abort(404);
+Route::prefix('api')->group(function(){
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
+    
+    Route::middleware(LarablendRoute::class)->any('/{model}/{action?}/{id?}',function($model, $action = 'index', $id = null){
+        return response()->json([
+            $model,$action,$id
+        ]);
+    });
 });
