@@ -17,7 +17,7 @@ class CreateViewSettingsTable extends Migration
             $table->id();
             $table->string('table_name');
             $table->string('column_name');
-            $table->boolean('show')->default('false');
+            $table->boolean('show')->default(true);
             $table->timestamps();
         });
     }
